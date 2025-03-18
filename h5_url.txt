@@ -1,0 +1,33 @@
+t11 = '18.1.2005'
+t12 = '11.30.2011'
+
+tarih1 = t11.split('.')
+tarih2 = t12.split('.')
+yıl1 = int(tarih1[-1])
+yıl2 = int(tarih2[-1])
+ay1 = int(tarih1[-2])
+ay2 = int(tarih2[-2])
+gun1 = int(tarih1[-3])
+gun2 = int(tarih2[-3])
+
+kategory = ['saglik', 'magazin', 'teknoloji']
+gazeteler = ['sabah', 'hurriyet', 'vatan']
+
+for m in gazeteler:
+    gaste = 'www.{}.com.tr'.format(m)
+    for k in kategory:
+        for i in range(yıl1, yıl2 + 1):  
+            for j in range(1, 13):  
+                
+                if j in [1, 3, 5, 7, 8, 10, 12]:
+                    max_gun = 31
+                elif j in [4, 6, 9, 11]:
+                    max_gun = 30
+                else:  
+                    if (i % 4 == 0 and i % 100 != 0) or (i % 400 == 0):
+                        max_gun = 29
+                    else:
+                        max_gun = 28
+
+                for gun in range(1, max_gun + 1):  
+                    print("{}/{}/{}-{}-{}".format(gaste, k, i, j, str(gun).zfill(2)))
